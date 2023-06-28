@@ -1,0 +1,1 @@
+De model is de App.js in react app dus soort de klant, view is de index.js in de server folder dus de ober dus de connectie ertussen en de database is controller want is de chef die de data doorgeeft. server folder dus index.js is de back-end en de app.js in de react is de front-end
