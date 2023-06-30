@@ -38,13 +38,13 @@ app.get("/api", (req, res) => {
           autoIncrement: true,
           primaryKey: true
       },
-      Name: {
+      name: {
           type: DataTypes.STRING
       },
-      Artist: {
+      author: {
           type: DataTypes.STRING
       },
-      Genre: {
+      genre: {
           type: DataTypes.STRING
       }
   }, {
@@ -77,13 +77,13 @@ SavedSong.init({
         autoIncrement: true,
         primaryKey: true
     },
-    Name: {
+    name: {
         type: DataTypes.STRING
     },
-    Artist: {
+    author: {
         type: DataTypes.STRING
     },
-    Genre: {
+    genre: {
         type: DataTypes.STRING
     }
 }, {
@@ -116,13 +116,10 @@ User.init({
         autoIncrement: true,
         primaryKey: true
     },
-    Name: {
+    username: {
         type: DataTypes.STRING
     },
-    Artist: {
-        type: DataTypes.STRING
-    },
-    Genre: {
+    password: {
         type: DataTypes.STRING
     }
 }, {

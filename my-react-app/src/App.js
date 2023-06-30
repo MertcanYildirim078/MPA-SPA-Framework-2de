@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import axios from 'axios';
+
+// use effect is dat het 1 keer called en wanneer het veranderd dan pas rope het nog ee keer
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState(null);
+  const [ username, setUsername ] = useState();
+  const [ password, setPassword ] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
       .then((data) => setData(data.message));
@@ -15,46 +18,33 @@ function App() {
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/songs')
-      .then((response) => {
-        const songsData = response.data.map((songs) => {
-          // Map the attributes to a simplified object
-          return {
-            id: songs.id,
-            name: songs.Name,
-            artist: songs.Artist,
-            genre: songs.Genre,
-          };
-        });
-        setSongs(songsData);
-      })
-      .catch((error) => {
-        console.error('Error retrieving data:', error);
-        // Handle error and set an appropriate state
-      });
+    fetch('/api/songs')
+      .then((response) => response.json())
+      .then((data) => setSongs(data))
+      .catch((error) => console.error('Error retrieving data:', error));
   }, []);
+
 
   return (
     <div className="body-login">
       	<main className="mainContainerLogin">
 
-          <h1>Songs</h1>
+        <h2>Songs List</h2>
 
-          <ul>
-            {songs.map((song) => (
-              <li key={song.id}>
-                {song.name} - {song.artist} ({song.genre})
-              </li>
-            ))}
-          </ul>
+      <ul>
+        {songs.map((song) => (
+          <div key={song.id}>
+          <p>{song.name} - {song.author}</p>
+          </div>
+        ))}
+      </ul>
 
-          <form className="form-login">
+        
             <h1 className="h1-login">Login screen</h1>
-            <input type={"text"} placeholder={"Input username"}/>
-            <input type={"text"} placeholder={"Input password"}/>
-            <button type="submit">Submit</button>
-          </form>
-          
+            <input type={"text"} placeholder={"Input username"} id='username' onChange={(event) => setUsername(event.target.value)}/>
+            <input type={"text"} placeholder={"Input password"} id='password'onChange={(event) => setPassword(event.target.value)}/> 
+            <button type="submit" onClick={() => console.log(username)}>Submit</button>
+        
         </main>
     </div>
   );
