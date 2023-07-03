@@ -93,7 +93,7 @@ SavedSong.init({
 });
 
 app.get("/api/saved_songs_list", (req, res) => {
-  Song.findAll({
+  SavedSong.findAll({
       attributes: {
           exclude: ['createdAt', 'updatedAt']
       }
@@ -108,37 +108,59 @@ app.get("/api/saved_songs_list", (req, res) => {
 });
 
 
-class User extends Model { }
+class User extends Model {}
 
-User.init({
+User.init(
+  {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
     username: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     password: {
-        type: DataTypes.STRING
-    }
-}, {
-    timestamps:false,
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    timestamps: false,
     sequelize,
-    modelName: 'saved_songs_list' 
-});
+    modelName: 'users',
+  }
+);
 
-app.get("/api/saved_songs_list", (req, res) => {
+app.get("/api/users", (req, res) => {
   User.findAll({
       attributes: {
           exclude: ['createdAt', 'updatedAt']
       }
   })
-      .then((savedSong) => {
-          res.json(savedSong);
+      .then((user) => {
+          res.json(user);
       })
       .catch((error) => {
           console.error('Error retrieving data:', error);
           res.status(500).json({ error: 'Error retrieving data' });
       });
 });
+
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+  
+    User.findOne({ where: { username: username, password: password } })
+      .then(user => {
+        if (user) {
+          // User found, return success response
+          res.json({ message: 'Login successful' });
+        } else {
+          // User not found or invalid credentials, return error response
+          res.status(401).json({ error: 'Invalid username or password' });
+        }
+      })
+      .catch(error => {
+        console.error('Error retrieving data:', error);
+        res.status(500).json({ error: 'Error retrieving data' });
+      });
+  });
