@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="body-login">
       <main className="mainContainerLogin">
-        <h2>Songs List</h2>
+        {/* <h2>Songs List</h2>
         <ul>
           {songs.map(song => (
             <div key={song.id}>
@@ -51,12 +51,12 @@ function App() {
               </p>
             </div>
           ))}
-        </ul>
+        </ul> */}
         <h1 className="h1-login">Login screen</h1>
         <input type="text" placeholder="Input username" onChange={event => setUsername(event.target.value)} />
         <input type="text" placeholder="Input password" onChange={event => setPassword(event.target.value)} />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
+        <button type="submit" onClick={handleSubmit} id='submitButton'>
+          Log in
         </button>
         {loginError && <p className="login-error">{loginError}</p>}
       </main>

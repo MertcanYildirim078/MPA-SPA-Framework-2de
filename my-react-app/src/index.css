@@ -19,5 +19,18 @@
 }
 
 input {
-  margin-bottom: 1em;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#submitButton {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
