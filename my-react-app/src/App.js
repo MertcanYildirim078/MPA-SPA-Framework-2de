@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Dashboard from './Dashboard';
+import Savedsongs from './Saved-songs';
 
 function App() {
   const [data, setData] = useState(null);
@@ -42,17 +43,7 @@ function App() {
   return (
     <div className="body-login">
       <main className="mainContainerLogin">
-        {/* <h2>Songs List</h2>
-        <ul>
-          {songs.map(song => (
-            <div key={song.id}>
-              <p>
-                {song.name} - {song.author}
-              </p>
-            </div>
-          ))}
-        </ul> */}
-        <h1 className="h1-login">Login screen</h1>
+        <h1 className="h1-login">Log in screen</h1>
         <input type="text" placeholder="Input username" onChange={event => setUsername(event.target.value)} />
         <input type="text" placeholder="Input password" onChange={event => setPassword(event.target.value)} />
         <button type="submit" onClick={handleSubmit} id='submitButton'>
@@ -70,6 +61,7 @@ function RouterApp() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path='/savedsongs' element={<Savedsongs />} />
       </Routes>
     </BrowserRouter>
   );

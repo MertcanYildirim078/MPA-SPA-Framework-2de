@@ -32,5 +32,33 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+a {
   text-decoration: none;
+  margin-left: 1em;
+  margin-right: 1em;
+  border: solid black 1px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.navBarContainer {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+
+h1 {
+  text-align: center;
+}
+
+.songsList {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+p {
+  border: solid black 1px;
 }
