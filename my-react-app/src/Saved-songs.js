@@ -20,7 +20,7 @@ function Savedsongs() {
     const { value } = event.target;
     setGenreFilter(value);
 
-    // Filter bij input
+    // Filter the songs based on genre
     const filtered = songs.filter(song => song.genre.toLowerCase().includes(value.toLowerCase()));
     setFilteredSongs(filtered);
   };
@@ -37,10 +37,17 @@ function Savedsongs() {
         </nav>
 
         <h1>Saved songs</h1>
-        <input type="text" placeholder="Filter by genre" value={genreFilter} onChange={handleGenreFilterChange} />
+        {genreFilter && (
+          <input
+            type="text"
+            placeholder="Filter by genre"
+            value={genreFilter}
+            onChange={handleGenreFilterChange}
+          />
+        )}
 
         <ul className='songsList'>
-          {Array.isArray(filteredSongs) ? (
+          {filteredSongs.length > 0 ? (
             filteredSongs.map(song => (
               <div key={song.id}>
                 <p>
@@ -51,7 +58,7 @@ function Savedsongs() {
           ) : (
             <p>No songs found.</p>
           )}
-      </ul>
+        </ul>
 
       </main>
     </div>
