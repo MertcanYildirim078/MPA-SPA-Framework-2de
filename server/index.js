@@ -107,6 +107,19 @@ app.get("/api/saved_songs_list", (req, res) => {
       });
 });
 
+app.post('/api/saved_songs_list', (req, res) => {
+  const { name, author, genre } = req.body;
+
+  SavedSong.create({ name, author, genre })
+    .then(savedSong => {
+      res.json(savedSong);
+    })
+    .catch(error => {
+      console.error('Error creating saved song:', error);
+      res.status(500).json({ error: 'Error creating saved song' });
+    });
+});
+
 
 class User extends Model {}
 
